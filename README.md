@@ -6,9 +6,9 @@
 
 **Version 0.1.0 — initial Windows VST3 build**
 
-[Download dfVX 0.1.0 for Windows (VST3 ZIP)](https://github.com/Quiescent18/dfVX-downloads/releases/download/v0.1.0/dfVX-0.1.0-Windows-VST3-x64.zip)
+[Download dfVX 0.1.0 for Windows (VST3 ZIP)](https://github.com/user-attachments/files/34610014/dfVX-0.1.0-Windows-VST3-x64.zip)
 
-**Publication status:** The build is packaged, but the GitHub Release asset must be uploaded before the download link becomes active. See [Releases](https://github.com/Quiescent18/dfVX-downloads/releases).
+**Release 0.1.0** is available through the files linked in the [GitHub release](https://github.com/Quiescent18/dfVX-downloads/releases/tag/v0.1.0).
 
 Download the **Windows VST3 ZIP** (not the automatically generated GitHub “Source code” archives). The ZIP contains the complete `dfVX.vst3` bundle, installation README, and release notes. No standalone app is included.
 
@@ -20,6 +20,14 @@ Download the **Windows VST3 ZIP** (not the automatically generated GitHub “Sou
 4. Restart your DAW and rescan VST3 plugins if necessary. Find **dfVX** by **Kisatchie Audio**.
 
 For updates, close your DAW before replacing the complete VST3 bundle. User presets are stored separately at `Documents\dfVX\Presets`.
+
+## User manual
+
+[Color illustrated dfVX user manual — GitHub release](https://github.com/Quiescent18/dfVX-downloads/releases/tag/v0.1.0)
+
+**Manual PDF upload pending:** The illustrated manual has not yet been attached to the GitHub release. Once uploaded, this link will lead to its release page.
+
+![dfVX vocal effects plugin user interface](images/dfvx-plugin.png)
 
 ## Features
 
@@ -39,7 +47,7 @@ This initial Windows x64 VST3 build was produced by the November 8, 2026, succes
 
 - [Version 0.1.0 release](https://github.com/Quiescent18/dfVX-downloads/releases/tag/v0.1.0)
 - [All releases and future updates](https://github.com/Quiescent18/dfVX-downloads/releases)
-- [SHA-256 checksum file](https://github.com/Quiescent18/dfVX-downloads/releases/download/v0.1.0/SHA256SUMS.txt)
+- [SHA-256 checksum file](https://github.com/user-attachments/files/34610013/SHA256SUMS.txt)
 
 To verify the ZIP, use Windows PowerShell:
 
