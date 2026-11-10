@@ -2,6 +2,8 @@
 
 **dfVX** is a Windows x64 VST3 vocal-effects processor developed by **Kisatchie Audio**.
 
+![dfVX vocal effects plugin user interface](images/dfvx-plugin.png)
+
 ## Download dfVX for Windows
 
 **Version 0.1.0 — initial Windows VST3 build**
@@ -24,8 +26,6 @@ For updates, close your DAW before replacing the complete VST3 bundle. User pres
 ## User manual
 
 [Download color illustrated dfVX user manual (PDF)](https://github.com/user-attachments/files/34610720/dfVX_User_Manual_Updated.pdf)
-
-![dfVX vocal effects plugin user interface](images/dfvx-plugin.png)
 
 ## Features
 
