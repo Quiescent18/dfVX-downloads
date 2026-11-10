@@ -8,11 +8,11 @@
 
 **Version 0.1.0 — initial Windows VST3 build**
 
-[Download dfVX 0.1.0 for Windows (VST3 ZIP)](https://github.com/user-attachments/files/34610014/dfVX-0.1.0-Windows-VST3-x64.zip)
+[Download dfVX 0.1.0 for Windows (VST3 ZIP)](https://github.com/Quiescent18/dfVX-downloads/releases/download/v0.1.0/dfVX-0.1.0-Windows-VST3-x64.zip)
 
 **Release 0.1.0** is available through the files linked in the [GitHub release](https://github.com/Quiescent18/dfVX-downloads/releases/tag/v0.1.0).
 
-Download the **Windows VST3 ZIP** (not the automatically generated GitHub “Source code” archives). The ZIP contains the complete `dfVX.vst3` bundle, installation README, and release notes. No standalone app is included.
+Download the **Windows VST3 ZIP** (not the automatically generated GitHub “Source code” archives). The ZIP contains the complete `dfVX.vst3` bundle, installation README, release notes, and the **color illustrated user manual (PDF)**. No standalone app is included.
 
 ## Installation
 
@@ -25,7 +25,7 @@ For updates, close your DAW before replacing the complete VST3 bundle. User pres
 
 ## User manual
 
-[Download color illustrated dfVX user manual (PDF)](https://github.com/user-attachments/files/34610720/dfVX_User_Manual_Updated.pdf)
+[Download color illustrated dfVX user manual (PDF)](https://github.com/Quiescent18/dfVX-downloads/releases/download/v0.1.0/dfVX_User_Manual_Updated.pdf)
 
 ## Features
 
@@ -43,10 +43,10 @@ This initial Windows x64 VST3 build was produced by the November 8, 2026, succes
 
 ## Release files and verification
 
-- [Color illustrated user manual (PDF)](https://github.com/user-attachments/files/34610720/dfVX_User_Manual_Updated.pdf)
+- [Color illustrated user manual (PDF)](https://github.com/Quiescent18/dfVX-downloads/releases/download/v0.1.0/dfVX_User_Manual_Updated.pdf)
 - [Version 0.1.0 release](https://github.com/Quiescent18/dfVX-downloads/releases/tag/v0.1.0)
 - [All releases and future updates](https://github.com/Quiescent18/dfVX-downloads/releases)
-- [SHA-256 checksum file](https://github.com/user-attachments/files/34610013/SHA256SUMS.txt)
+- [SHA-256 checksum file](https://github.com/Quiescent18/dfVX-downloads/releases/download/v0.1.0/SHA256SUMS.txt)
 
 To verify the ZIP, use Windows PowerShell:
 
