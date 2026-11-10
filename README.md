@@ -23,9 +23,7 @@ For updates, close your DAW before replacing the complete VST3 bundle. User pres
 
 ## User manual
 
-[Color illustrated dfVX user manual — GitHub release](https://github.com/Quiescent18/dfVX-downloads/releases/tag/v0.1.0)
-
-**Manual PDF upload pending:** The illustrated manual has not yet been attached to the GitHub release. Once uploaded, this link will lead to its release page.
+[Download color illustrated dfVX user manual (PDF)](https://github.com/user-attachments/files/34610720/dfVX_User_Manual_Updated.pdf)
 
 ![dfVX vocal effects plugin user interface](images/dfvx-plugin.png)
 
@@ -45,6 +43,7 @@ This initial Windows x64 VST3 build was produced by the November 8, 2026, succes
 
 ## Release files and verification
 
+- [Color illustrated user manual (PDF)](https://github.com/user-attachments/files/34610720/dfVX_User_Manual_Updated.pdf)
 - [Version 0.1.0 release](https://github.com/Quiescent18/dfVX-downloads/releases/tag/v0.1.0)
 - [All releases and future updates](https://github.com/Quiescent18/dfVX-downloads/releases)
 - [SHA-256 checksum file](https://github.com/user-attachments/files/34610013/SHA256SUMS.txt)
