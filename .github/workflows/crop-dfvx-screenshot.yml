@@ -1,0 +1,46 @@
+name: Crop dfVX plugin screenshot
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/crop-dfvx-screenshot.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  crop-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Crop title bar and yellow warning banner
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check Pillow
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          file = Path("images/dfvx-plugin.png")
+          with Image.open(file) as source:
+              width, height = source.size
+              if (width, height) == (1662, 930):
+                  print("Screenshot already cropped; nothing to change.")
+              elif (width, height) == (1662, 986):
+                  source.crop((0, 56, width, height)).save(file, format="PNG")
+                  print("Cropped screenshot to 1662 x 930. Removed top 56 pixels.")
+              else:
+                  raise RuntimeError(f"Unexpected screenshot dimensions: {width} x {height}; not cropping")
+          PY
+      - name: Commit replacement screenshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add images/dfvx-plugin.png
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Crop yellow warning bar from dfVX plugin screenshot"
+          git push
