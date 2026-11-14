@@ -1,0 +1,39 @@
+dfVX 1.0 — Windows x64 VST3
+Kisatchie Audio
+
+FIRST STABLE RELEASE
+- Version 1.0.0, built and tested on Windows.
+- Retains the dfVX product name, manufacturer and existing VST3 plugin identifier so
+  existing DAW projects continue to recognize the plugin.
+
+MODULATION: PHASER / TREMOLO
+- Phaser and Tremolo can run independently or together; selecting either enables the
+  Modulation stage when it is bypassed.
+- Solo Tremolo follows the upper Tempo Division grid and displays its actual
+  host-BPM-derived rate in TREM EDIT. TR DEPTH, WAVE and MOD MIX remain editable.
+- With both active, Phaser uses the upper grid while Tremolo has independent TR DIV.
+- Moving a synced RATE control switches its own sync selection to FREE;
+  merely clicking the control does not unsync it.
+- Phaser defaults use 6 all-pass stages, 70% sweep, 32% feedback,
+  850 Hz center and 50% internal PH MIX for stronger moving notches.
+- The Floating Phaser factory preset is retuned for clearer movement.
+- New Modulation mix defaults to 100% and Tremolo depth defaults to 72%.
+- ROT1 EDIT / ROT2 EDIT and PHAS EDIT / TREM EDIT labels reflect selection.
+
+DELAY / REVERB
+- The Manual Delay sync row includes 1/2-note alongside the existing divisions.
+
+GRAPHICS / COMPRESSION
+- LA-2A and 1176 compressor descriptions align at the same level.
+- The existing rose/carbon-fiber visual theme and VST3-only distribution are retained.
+
+INSTALLATION
+1. Close your DAW.
+2. Extract the complete dfVX-1.0.0-Windows-VST3-x64.zip download.
+3. Copy dfVX.vst3 to C:\Program Files\Common Files\VST3.
+4. Reopen the DAW and rescan VST3 plugins if needed.
+
+The color illustrated manual is included in the ZIP and available separately.
+User presets remain in Documents\dfVX\Presets.
+This Windows x64 VST3 is unsigned. No .lib/.exp development files or source
+code are included. The internal test application is not distributed.
