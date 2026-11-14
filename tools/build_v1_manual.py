@@ -47,8 +47,7 @@ def new_page(number):
     mem=BytesIO();c=canvas.Canvas(mem,pagesize=(612,792))
     label(c,"dfVX / USER MANUAL",465,22,8)
     c.setFont("DfBody",7);c.setFillColor(GRAY)
-    c.drawString(375,24,"dfVX  •  DOCUMENTATION EDITION 1.2")
-    c.drawString(535,765,str(number))
+    c.drawString(372,28,"dfVX  •  DOCUMENTATION EDITION 1.2   "+str(number))
     return c,mem
 
 def finish(c,mem):
