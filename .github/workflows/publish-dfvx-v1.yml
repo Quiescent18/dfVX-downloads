@@ -1,0 +1,95 @@
+name: Publish dfVX 1.0 Windows VST3
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-dfvx-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install documentation dependencies
+        shell: bash
+        run: python -m pip install --disable-pip-version-check pymupdf reportlab pillow
+      - name: Retrieve validated 1.0 build and prior manual
+        shell: bash
+        env:
+          VST_SOURCE_URL: "https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-f368-822f-b61c-21fb48902cd7/raw?se=2026-11-14T16%3A55%3A31Z&sp=r&sv=2026-06-06&sr=b&scid=78dc66b8-ae8a-590f-95ca-bf4516f73b60&skoid=bbd22fc4-f881-4ea4-b2f3-c12033cf6a8b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-11-14T16%3A03%3A57Z&ske=2026-11-15T16%3A03%3A57Z&sks=b&skv=2026-06-06&sig=fYkDx1SnsF8Jf8FJzgzBS0oHQh94rUMiNWau%2BHNeSC0%3D"
+          GUI_SOURCE_URL: "https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-90e4-822f-a48e-aff070b0feac/raw?se=2026-11-14T16%3A55%3A31Z&sp=r&sv=2026-06-06&sr=b&scid=e8b00b34-9e67-54cb-95f6-eca5a7e6cb8a&skoid=bbd22fc4-f881-4ea4-b2f3-c12033cf6a8b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-11-14T11%3A57%3A26Z&ske=2026-11-15T11%3A57%3A26Z&sks=b&skv=2026-06-06&sig=CTupv0pXABcEwd5NMsw4xjX8a8pX0caqQHrI9ZuBQlA%3D"
+        run: |
+          set -euo pipefail
+          curl -fLsS --retry 3 "$VST_SOURCE_URL" -o dfvx-vst3-build.zip
+          curl -fLsS --retry 3 "$GUI_SOURCE_URL" -o gui-screenshots.zip
+          unzip -t dfvx-vst3-build.zip >/dev/null
+          unzip -t gui-screenshots.zip >/dev/null
+          unzip -p gui-screenshots.zip DfVx-window.png > DfVx-window.png
+          curl -fLsS --retry 3 \
+            'https://github.com/Quiescent18/dfVX-downloads/releases/download/v0.1.0/dfVX_User_Manual_Updated.pdf' \
+            -o original_manual.pdf
+          test "$(stat -c%s original_manual.pdf)" -gt 1000000
+          test "$(stat -c%s DfVx-window.png)" -gt 100000
+      - name: Generate updated illustrated manual and release package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/build_v1_manual.py
+          cp RELEASE_NOTES_1.0.txt RELEASE_NOTES.txt
+          python tools/prepare_v1_release.py
+          sha256sum --check SHA256SUMS.txt
+          python - <<'PY'
+          import fitz
+          from zipfile import ZipFile
+          doc=fitz.open("dfVX_User_Manual_1.0.pdf")
+          assert len(doc)==23 and doc[11].get_text().find("TREMOLO")!=-1
+          with ZipFile("dfVX-1.0.0-Windows-VST3-x64.zip") as f:
+              names=f.namelist()
+              assert "dfVX.vst3/Contents/x86_64-win/dfVX.vst3" in names
+              assert "dfVX_User_Manual_1.0.pdf" in names
+              assert "README.txt" in names and "RELEASE_NOTES.txt" in names
+              assert not any(n.lower().endswith((".exp",".lib")) for n in names)
+              assert f.testzip() is None
+          print("Verified manual and release ZIP")
+          PY
+      - name: Publish v1.0.0 GitHub Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload v1.0.0 \
+              dfVX-1.0.0-Windows-VST3-x64.zip \
+              dfVX_User_Manual_1.0.pdf SHA256SUMS.txt \
+              --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create v1.0.0 \
+              dfVX-1.0.0-Windows-VST3-x64.zip \
+              dfVX_User_Manual_1.0.pdf SHA256SUMS.txt \
+              --repo "$GITHUB_REPOSITORY" \
+              --title 'dfVX 1.0 — Windows VST3' \
+              --notes-file RELEASE_NOTES.txt \
+              --latest
+          fi
+      - name: Replace public README screenshot with verified 1.0 capture
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          image=Image.open("DfVx-window.png")
+          w,h=image.size
+          assert w>1200 and h>900, (w,h)
+          image.crop((0,56,w,h)).save("images/dfvx-plugin.png")
+          PY
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions[bot]'
+          git add images/dfvx-plugin.png
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update dfVX 1.0 plugin screenshot'
+            git push
+          fi
